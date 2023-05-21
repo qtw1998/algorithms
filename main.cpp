@@ -41,7 +41,26 @@ int main() {
 
     LoopQueue<int> loopQueue;
 
-    std::cout << loopQueue.getCapacity();
+    for (int i = 0; i < 10; ++i) {
+        loopQueue.enqueue(i);
+        std::cout << loopQueue;
+    }
+
+    loopQueue.dequeue();
+    loopQueue.dequeue();
+    loopQueue.dequeue();
+    loopQueue.dequeue();
+    loopQueue.dequeue();
+    loopQueue.dequeue();
+    std::cout << loopQueue;
+
+    for (int i = 11; i < 21; ++i) {
+        loopQueue.enqueue(i);
+        std::cout << loopQueue;
+    }
+//    loopQueue.dequeue();
+//    loopQueue.dequeue();
+//    loopQueue.dequeue();
 
     return 0;
 }

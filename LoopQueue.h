@@ -60,14 +60,14 @@ public:
     }
 
     template<typename U>
-    friend std::ostream &operator<<(std::ostream &output, LoopQueue<T> &loopQueue) {
-        output << "front [";
+    friend std::ostream &operator<<(std::ostream &output, LoopQueue<U> &loopQueue) {
+        output << "Loop Queue, capacity: " << loopQueue.getCapacity() << " front [";
         for (int i = loopQueue.front; i != loopQueue.tail; i = (i + 1) % loopQueue.capacity) {
             output << loopQueue.data[i];
-            if (i != loopQueue.size - 1)
+            if ((i + 1) % loopQueue.capacity != loopQueue.tail)
                 output << " ";
         }
-        output << "[ tail \n";
+        output << "] tail \n";
         return output;
     }
 
@@ -81,7 +81,6 @@ private:
      * @param newCapacity real elements size
      */
     void resize(int newCapacity) {
-        capacity = newCapacity + 1;
         T *newData = new T[newCapacity + 1];
         for (int i = 0; i < size; ++i) {
             newData[i] = data[(front + i) % capacity];
@@ -89,6 +88,7 @@ private:
 
         delete[] data;
         data = newData;
+        capacity = newCapacity + 1;
         front = 0;
         tail = size;
     }
