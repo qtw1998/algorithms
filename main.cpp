@@ -1,66 +1,42 @@
 #include <iostream>
+#include <chrono>
+#include <random>
 #include "Array.h"
 #include "ArrayStack.h"
 #include "ArrayQueue.h"
 #include "LoopQueue.h"
 
+template<typename T>
+double testQueue(Queue<T> &queue, int opCount) {
+    auto startTime = std::chrono::high_resolution_clock::now();
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(1, std::numeric_limits<int>::max());
+
+    for (int i = 0; i < opCount; ++i)
+        queue.enqueue(dis(gen));
+    for (int i = 0; i < opCount; ++i)
+        queue.dequeue();
+
+
+    auto endTime = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> elapsed = endTime - startTime;
+    return elapsed.count();
+}
+
 int main() {
-//    Array<int> array;
-//    for (int i = 0; i < 5; ++i) {
-//        array.addLast(i);
-//    }
-//
-//    std::cout << array;
-//
-//    for (int i = 5; i < 15; ++i)
-//        array.addLast(i);
-//
-//    std::cout << array;
-//
-//    for (int i = 0; i < 7; ++i)
-//        array.removeLast();
-//
-//    std::cout << array;
 
-//    ArrayStack<int> arrayStack;
-//    for (int i = 0; i < 5; ++i) {
-//        arrayStack.push(i);
-//        std::cout << arrayStack;
-//    }
-//    arrayStack.pop();
-//    std::cout << arrayStack;
+    int opCount = 100000;
 
-//    ArrayQueue<int> arrayQueue;
-//    for (int i = 0; i < 5; ++i) {
-//        arrayQueue.enqueue(i);
-//        std::cout << arrayQueue;
-//    }
-//
-//    arrayQueue.dequeue();
-//    std::cout << arrayQueue;
+    ArrayQueue<int> arrayQueue;
+    double time2 = testQueue(arrayQueue, opCount);
+    std::cout << "ArrayQueue time: " << time2 << std::endl;
 
     LoopQueue<int> loopQueue;
-
-    for (int i = 0; i < 10; ++i) {
-        loopQueue.enqueue(i);
-        std::cout << loopQueue;
-    }
-
-    loopQueue.dequeue();
-    loopQueue.dequeue();
-    loopQueue.dequeue();
-    loopQueue.dequeue();
-    loopQueue.dequeue();
-    loopQueue.dequeue();
-    std::cout << loopQueue;
-
-    for (int i = 11; i < 21; ++i) {
-        loopQueue.enqueue(i);
-        std::cout << loopQueue;
-    }
-//    loopQueue.dequeue();
-//    loopQueue.dequeue();
-//    loopQueue.dequeue();
+    double time1 = testQueue(loopQueue, opCount);
+    std::cout << "LoopQueue time: " << time1 << std::endl;
 
     return 0;
 }

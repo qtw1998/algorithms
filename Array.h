@@ -88,8 +88,7 @@ Array<T>::Array(const Array &obj) {
 
 template<typename T>
 Array<T>::~Array() {
-    std::cout << "Array Deleted." << std::endl;
-    delete data;
+    delete[] data;
 }
 
 template<typename T>
@@ -126,7 +125,7 @@ T Array<T>::remove(int index) {
 
     T res = data[index];
     for (int i = index + 1; i < size; ++i)
-        data[index - 1] = data[index];
+        data[i - 1] = data[i];
     --size;
     if (size <= capacity / 2 && capacity / 2 != 0)
         resize(capacity / 2);

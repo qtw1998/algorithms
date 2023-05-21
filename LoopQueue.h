@@ -17,6 +17,17 @@ public:
         delete[] data;
     }
 
+//    LoopQueue(const LoopQueue& other) {
+//        capacity = other.capacity;
+//        size = other.size;
+//        front = other.front;
+//        tail = other.tail;
+//        data = new T[capacity];
+//        for (int i = 0; i < size; ++i) {
+//            data[i] = other.data[(other.front + i) % capacity];
+//        }
+//    }
+
     /**
      * \brief return the real capacity for elements
      */

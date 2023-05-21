@@ -43,7 +43,6 @@ public:
         }
         output << "] tail\n";
         return output;
-
     }
 };
 
