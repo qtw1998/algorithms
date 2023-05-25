@@ -3,11 +3,19 @@ project(DataStructure)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(DataStructure main.cpp Array.h Queue.h Stack.h ArrayStack.h ArrayQueue.h LoopQueue.h)
+# Place all header files into a variable
+set(HEADER_FILES Array.h Queue.h Stack.h ArrayStack.h ArrayQueue.h LoopQueue.h LinkedList.h)
 
-add_executable(Test Test.cpp)
+# Set source files for each executable
+set(DATASTRUCTURE_SRC main.cpp)
 
+# Add executables
+add_executable(DataStructure ${DATASTRUCTURE_SRC} ${HEADER_FILES})
+#add_executable(DataStructure main.cpp Array.h Queue.h Stack.h ArrayStack.h ArrayQueue.h LoopQueue.h)
 
-add_executable(TestClass TestClass.cpp)
-
-add_executable(vaild_parent Valid-Parentheses.cpp)
+#add_executable(Test Test.cpp)
+#
+#
+#add_executable(TestClass TestClass.cpp)
+#
+#add_executable(vaild_parent Valid-Parentheses.cpp)
