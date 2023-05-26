@@ -6,6 +6,7 @@
 #include "ArrayQueue.h"
 #include "LoopQueue.h"
 #include "LinkedList.h"
+#include "LinkedListStack.h"
 
 /**
  *  我使用了 std::chrono 库来计算时间，它可以提供纳秒级别的精确度。
@@ -54,18 +55,27 @@ int main() {
 //    return 0;
 
     // test LinkedList
-    LinkedList<int> linkedList;
+//    LinkedList<int> linkedList;
+//
+//    for (int i = 0; i < 10; ++i) {
+//        linkedList.add(i, i);
+//    }
+//    std::cout << linkedList << std::endl;
+//
+//    linkedList.remove(2);
+//    std::cout << linkedList << std::endl;
+//
+//    linkedList.removeElement(9);
+//    std::cout << linkedList << std::endl;
 
-    for (int i = 0; i < 10; ++i) {
-        linkedList.add(i, i);
-    }
-    std::cout << linkedList << std::endl;
+    // test LinkedListStack
+//    LinkedListStack<int> linkedListStack;
+//    for (int i = 0; i < 10; ++i) {
+//        linkedListStack.push(i);
+//        std::cout << linkedListStack << std::endl;
+//    }
 
-    linkedList.remove(2);
-    std::cout << linkedList << std::endl;
 
-    linkedList.removeElement(9);
-    std::cout << linkedList << std::endl;
 
     return 0;
 }

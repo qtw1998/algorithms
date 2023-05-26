@@ -14,7 +14,7 @@ private:
         T e;
         Node *next;
 
-        Node(T e, Node *next) : e(e), next(nullptr) {}
+        Node(T e, Node *next) : e(e), next(next) {}
 
         Node(T e) : e(e), next(nullptr) {}
 
@@ -96,7 +96,7 @@ public:
         return curNode->e;
     }
 
-    T getFist() {
+    T getFirst() {
         return get(0);
     }
 
@@ -142,6 +142,7 @@ public:
         if (prev->next != nullptr) {
             Node *delNode = prev->next;
             prev->next = delNode->next;
+            delNode->next = nullptr;
             delete delNode;
             --size;
         }
