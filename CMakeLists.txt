@@ -4,7 +4,7 @@ project(DataStructure)
 set(CMAKE_CXX_STANDARD 17)
 
 # Place all header files into a variable
-set(HEADER_FILES Array.h Queue.h Stack.h ArrayStack.h ArrayQueue.h LoopQueue.h LinkedList.h LinkedListStack.h)
+set(HEADER_FILES Array.h Queue.h Stack.h ArrayStack.h ArrayQueue.h LoopQueue.h LinkedList.h LinkedListStack.h LinkedListQueue.h)
 
 # Set source files for each executable
 set(DATASTRUCTURE_SRC main.cpp)
