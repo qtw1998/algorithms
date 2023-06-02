@@ -8,6 +8,7 @@
 #include "LinkedList.h"
 #include "LinkedListStack.h"
 #include "LinkedListQueue.h"
+#include "BST.h"
 
 /**
  *  我使用了 std::chrono 库来计算时间，它可以提供纳秒级别的精确度。
@@ -76,17 +77,28 @@ int main() {
 //        std::cout << linkedListStack << std::endl;
 //    }
     // test LinkedListQueue.h
-    LinkedListQueue<int> queue;
-    for (int i = 0; i < 10; i++) {
-        queue.enqueue(i);
-        std::cout << queue << std::endl;
-
-        if (i % 3 == 2) {
-            queue.dequeue();
-            std::cout << queue << std::endl;
-        }
+//    LinkedListQueue<int> queue;
+//    for (int i = 0; i < 10; i++) {
+//        queue.enqueue(i);
+//        std::cout << queue << std::endl;
+//
+//        if (i % 3 == 2) {
+//            queue.dequeue();
+//            std::cout << queue << std::endl;
+//        }
+//    }
+    // test Binary Search Tree
+    BST<int> bst;
+    int nums[] = {5, 3, 6, 8, 4, 2, 1};
+    for (int e: nums) {
+        bst.add(e);
     }
 
-
+    bst.preOrder();
+//    std::cout << bst << std::endl;
+//    std::cout << bst.contains(4);
+    std::cout << std::endl;
+    bst.levelOrder();
+    std::cout << bst.minimum();
     return 0;
 }

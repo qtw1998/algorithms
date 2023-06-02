@@ -1,7 +1,7 @@
 //#include <stack>
 #include <iostream>
 #include <string>
-#include "ArrayStack.h"
+#include "../LinearStructures/ArrayStack.h"
 
 using namespace std;
 
