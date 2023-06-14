@@ -218,15 +218,74 @@ public:
     T minimum() {
         if (size == 0)
             throw std::invalid_argument("BST is empty.");
-        return minimum(root);
+
+        Node *minNode = minimum(root);
+        return minNode->e;
     }
 
 private:
-    T minimum(Node *node) {
+    Node *minimum(Node *node) {
         if (node->left == nullptr)
-            return node->e;
+            return node;
 
         return minimum(node->left);
+    }
+
+public:
+    T maximum() {
+        if (size == 0)
+            throw std::invalid_argument("BST is empty.");
+
+        Node *maxNode = maximum(root);
+        return maxNode->e;
+    }
+
+    Node *maximum(Node *node) {
+        if (node->right == nullptr)
+            return node;
+
+        return maximum(node->right);
+    }
+
+public:
+    T removeMin() {
+        int min_val = minimum();
+        root = removeMin(root);
+        return min_val;
+    }
+
+private:
+    // 返回删除节点后新的二分搜索树的根
+    Node *removeMin(Node *node) {
+        if (node->left == nullptr) {
+            Node *rightNode = node->right;
+            --size;
+            delete node;
+            return rightNode;
+        }
+
+        node->left = removeMin(node->left);
+        return node;
+    }
+
+public:
+    T removeMax() {
+        int max_val = maximum();
+        root = removeMax(root);
+        return max_val;
+    }
+
+private:
+    Node *removeMax(Node *node) {
+        if (node->right == nullptr) {
+            Node *leftNode = node->left;
+            --size;
+            delete node;
+            return leftNode;
+        }
+
+        node->right = removeMax(node->right);
+        return node;
     }
 
 public:

@@ -88,17 +88,22 @@ int main() {
 //        }
 //    }
     // test Binary Search Tree
-    BST<int> bst;
-    int nums[] = {5, 3, 6, 8, 4, 2, 1};
-    for (int e: nums) {
-        bst.add(e);
-    }
-
-    bst.preOrder();
+//    BST<int> bst;
+//    int nums[] = {5, 3, 6, 8, 4, 2, 1};
+//    for (int e: nums) {
+//        bst.add(e);
+//    }
+//
+//    bst.preOrder();
 //    std::cout << bst << std::endl;
 //    std::cout << bst.contains(4);
-    std::cout << std::endl;
-    bst.levelOrder();
-    std::cout << bst.minimum();
+//    std::cout << std::endl;
+//    bst.levelOrder();
+//    std::cout << bst.minimum() << std::endl;
+//    std::cout << bst.maximum();
+
+    // test BST remove
+    BST<int> bst;
+    
     return 0;
 }
