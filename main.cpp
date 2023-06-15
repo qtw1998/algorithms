@@ -102,8 +102,31 @@ int main() {
 //    std::cout << bst.minimum() << std::endl;
 //    std::cout << bst.maximum();
 
-    // test BST remove
+    // test BST removeMin and removeMax
     BST<int> bst;
-    
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 10000);
+
+    int n = 1000;
+    for (int i = 0; i < n; ++i)
+        bst.add(dist(mt));
+
+    std::vector<int> nums;
+    while (!bst.isEmpty())
+        nums.push_back(bst.removeMin());
+
+    for (int i = 0; i < nums.size(); ++i)
+        std::cout << nums[i] << " ";
+
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i - 1] > nums[i])
+            throw std::runtime_error("Error!");
+    }
+    std::cout << std::endl;
+    std::cout << "removeMin test completed." << std::endl;
+
+    nums.clear(); // remove all elements from the vector
+
     return 0;
 }

@@ -88,18 +88,18 @@ private:
 //    }
 
     Node *add(Node *node, T e) {
-        std::cout << "Adding " << e << " to the tree." << std::endl;
+//        std::cout << "Adding " << e << " to the tree." << std::endl;
         if (node == nullptr) {
-            std::cout << "Creating a new node for " << e << std::endl;
+//            std::cout << "Creating a new node for " << e << std::endl;
             ++size;
             return new Node(e);
         }
 
         if (e < node->e) {
-            std::cout << "Going left from " << node->e << std::endl;
+//            std::cout << "Going left from " << node->e << std::endl;
             node->left = add(node->left, e);
         } else if (e > node->e) {
-            std::cout << "Going right from " << node->e << std::endl;
+//            std::cout << "Going right from " << node->e << std::endl;
             node->right = add(node->right, e);
         }
 
@@ -240,6 +240,7 @@ public:
         return maxNode->e;
     }
 
+private:
     Node *maximum(Node *node) {
         if (node->right == nullptr)
             return node;
@@ -249,7 +250,7 @@ public:
 
 public:
     T removeMin() {
-        int min_val = minimum();
+        T min_val = minimum();
         root = removeMin(root);
         return min_val;
     }
@@ -270,7 +271,7 @@ private:
 
 public:
     T removeMax() {
-        int max_val = maximum();
+        T max_val = maximum();
         root = removeMax(root);
         return max_val;
     }
@@ -286,6 +287,47 @@ private:
 
         node->right = removeMax(node->right);
         return node;
+    }
+
+public:
+    void remove(T e) {
+        root = remove(root, e);
+    }
+
+private:
+    Node *remove(Node *node, T e) {
+        if (node == nullptr)
+            return nullptr;
+
+        if (e < node->e) {
+            node->left = remove(node->left, e);
+            return node;
+        }
+
+        if (e > node->e) {
+            node->right = remove(node->right, e);
+            return node;
+        }
+
+        if (e == node->e) {
+            if (node->left == nullptr) {
+                Node *rightNode = node->right;
+                delete node;
+                --size;
+                return rightNode;
+            } else if (node->right == nullptr) {
+                Node *leftNode = node->left;
+                delete leftNode;
+                --size;
+                return leftNode;
+            } else {
+                Node *successor = minimum(node->right);
+                successor->left = node->left;
+                successor->right = removeMin(node->right);
+                delete node;
+                return successor;
+            }
+        }
     }
 
 public:
